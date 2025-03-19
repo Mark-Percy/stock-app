@@ -16,15 +16,13 @@ Route::get('/profile' , function() {
 
 Route::get('/recipes' , function() {
     $recipes = new Recipe();
-    // dd($recipes);
     return view('recipes', ['heading' => 'Recipe Page', 'recipes' => $recipes->get_all_recipes()]);
 
 })->name('recipe');
 
 Route::get('/recipes/{id}' , function($id) {
     $recipes = new Recipe();
-    // dd($recipes);
-        return view('recipe', ['recipe' => $recipes->getRecipe($id)]);
+    return view('recipe', ['recipe' => $recipes->getRecipe($id)]);
 
 })->name('recipe');
 
