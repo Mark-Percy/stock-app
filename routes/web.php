@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Recipe;
 
 Route::get('/', function () {
+    $recipes = Recipe::all();
     return view('home',['heading' => 'Home Page']);
 })->name('home');
 
@@ -15,14 +16,12 @@ Route::get('/profile' , function() {
 })->name('profile');
 
 Route::get('/recipes' , function() {
-    $recipes = new Recipe();
-    return view('recipes', ['heading' => 'Recipe Page', 'recipes' => $recipes->get_all_recipes()]);
+    return view('recipes', ['heading' => 'Recipe Page', 'recipes' => Recipe::all()]);
 
 })->name('recipe');
 
 Route::get('/recipes/{id}' , function($id) {
-    $recipes = new Recipe();
-    return view('recipe', ['recipe' => $recipes->getRecipe($id)]);
+    return view('recipe', ['recipe' => Recipe::find($id)]);
 
 })->name('recipe');
 
